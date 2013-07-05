@@ -24,6 +24,7 @@ References:
 var fs = require('fs');
 var program = require('commander');
 var cheerio = require('cheerio');
+var rest = require('restler');
 var HTMLFILE_DEFAULT = "index.html";
 var CHECKSFILE_DEFAULT = "checks.json";
 
@@ -44,7 +45,7 @@ var loadChecks = function(checksfile) {
     return JSON.parse(fs.readFileSync(checksfile));
 };
 
-var checkHtmlFile = function(htmlfile, checksfile) {
+var checkHtmlFile = function(htmlfile, checksfile, output) {
     $ = cheerioHtmlFile(htmlfile);
     var checks = loadChecks(checksfile).sort();
     var out = {};
@@ -52,17 +53,40 @@ var checkHtmlFile = function(htmlfile, checksfile) {
         var present = $(checks[ii]).length > 0;
         out[checks[ii]] = present;
     }
-    return out;
+    output(JSON.stringify(out, null, 4));
 };
+
+var checkHtmlUrl = function(url, checksfile, output) {
+    var loadAndCheck = function(response) {
+        $ = cheerio.load(response);
+        var checks = loadChecks(checksfile).sort();
+        var out = {};
+        for(var ii in checks) {
+            var present = $(checks[ii]).length > 0;
+            out[checks[ii]] = present;
+        }
+        output(JSON.stringify(out, null, 4));
+    };
+    rest.get(url).on('complete', loadAndCheck);
+}
+
+var output = function(text) {
+    console.log(text);
+}
 
 if(require.main == module) {
     program
-        .option('-c, --checks ', 'Path to checks.json', assertFileExists, CHECKSFILE_DEFAULT)
-        .option('-f, --file ', 'Path to index.html', assertFileExists, HTMLFILE_DEFAULT)
-        .parse(process.argv);
-    var checkJson = checkHtmlFile(program.file, program.checks);
-    var outJson = JSON.stringify(checkJson, null, 4);
-    console.log(outJson);
+            .option('-c, --checks [checkfile]', 'Path to checks.json')
+            .option('-f, --file [filename]', 'Path to index.html')
+            .option('-u, --url [website]', 'URL to website')
+            .parse(process.argv);
+    
+    if (program.file) {
+        checkHtmlFile(program.file, program.checks, output);
+    } else if (program.url) {
+        checkHtmlUrl(program.url, program.checks, output);
+    }
 } else {
     exports.checkHtmlFile = checkHtmlFile;
+    exports.checkHtmlUrl = checkHtmlUrl;
 }
