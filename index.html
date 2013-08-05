@@ -4,18 +4,18 @@
         <title>SourcecodeBroker</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
+
         <link rel="stylesheet" href="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fbootstrap-combined.no-icons.min.css">
 
         <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css">
         <link rel="stylesheet" href="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fsocial-buttons.css">
-        
+
         <script src="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fjquery.js"></script>
         <script src="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fbootstrap.js"></script>
-        
+
         <link href="http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic" rel="stylesheet" type="text/css">
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,300,400,600,700,800" rel="stylesheet" type="text/css">
-        
+
         <style type="text/css">
             /* Large desktop */
             @media (min-width: 980px) {
@@ -29,7 +29,7 @@
                     border-left: 1px white solid;
                 }
             }
-            
+
             /* Landscape phones and down */
             @media (max-width: 480px) {
                 .copy {
@@ -42,9 +42,9 @@
                     border-top: 1px white solid;
                 }
             }
-            
+
             /* All form factors */
-            
+
             /* Main body and headings */
             body {
                 font-family: 'Open Sans', Helvetica, Arial, sans-serif;
@@ -62,7 +62,7 @@
                 font-size: 18px;
                 line-height: 24px;
             }
-            
+
             /* Video pitch and Action */
             .pitch {
                 padding: 2.5% 0%;
@@ -80,7 +80,7 @@
             .statistics h3, .statistics p {
                 color: white;
             }
-            
+
             /* Marketing Copy and Footer */
             .copy {
                 padding-top: 2.5%;
@@ -99,6 +99,12 @@
             }
             .footer a {
                 color: #ccccff;
+            }
+
+            /* http://support.addthis.com/customer/portal/questions/1136093-share-buttons-in-center-position */      
+            div.addthis_toolbox {
+                width:280px;
+                margin: 0 auto;
             }
         </style>
     </head>
@@ -124,7 +130,7 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- We use row-fluid inside containers to achieve a resizable layout. -->
         <!-- blogs.endjin.com/2013(04/tips-for-implementing-responsive-design-using-bootstrap/ -->
         <!-- http://stackoverflow.com/a/12270322 -->
@@ -144,12 +150,12 @@
                     <p class="lead">I got work, you got time!</p>
                 </div>
             </div>
-            
+
             <div class="row-fluid pitch">
                 <div class="span5 offset1 video">
                     <img class="img-polaroid" src="https://dl.dropboxusercontent.com/s/z9xm1jqlklc1eqx/ID-1001462854_480x300.png?token_hash=AAEXZbCq-UGQ8CI7DED0apqEp55zULG7iGId-yVQ_p06IQ" alt="Designer and Developer find together.">
                 </div>
-                
+
                 <!-- We define a new 'actions' div to contain statistics, order, and share buttons. -->
                 <div class="span5 actions">
                     <div class="row-fluid">
@@ -168,7 +174,7 @@
                                         <h3>$0</h3> <p>of $5,000</p>
                                     </div>
                                 </div>
-                                
+
                                 <div class="span4">
                                     <div class="linediv-r">
                                         <h3>30</h3> <p>days left</p>
@@ -177,7 +183,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="row-fluid">
                         <div class="span10 offset1">
                             <!-- Bootstrap progress bar -->
@@ -188,7 +194,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="row-fluid">
                         <div class="span6 offset3 order">
                             <!-- Standard Bootstrp button. -->
@@ -196,18 +202,34 @@
                             <button class="btn btn-success btn-large">Preorder</button>
                         </div>
                     </div>
-                    
+
                     <div class="row-fluid">
                         <div class="span8 offset2 social">
                             <!-- Social buttons are not included in default Bootstrap. -->
                             <!-- See: http://noizwaves.github.io/bootstrap-social-buttons -->
+                            <!--
                             <button class="btn btn-twitter"><i class="icon-twitter"></i> | Twitter</button>
                             <button class="btn btn-facebook"><i class="icon-facebook"></i> | Facebook</button>
+                            -->
+
+                            <!-- taken from https://www.addthis.com/get/sharing#.Uf-XNI05kns -->
+                            <!-- AddThis Button BEGIN -->
+                            <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+                                <a class="addthis_button_preferred_1"></a>
+                                <a class="addthis_button_preferred_2"></a>
+                                <a class="addthis_button_preferred_3"></a>
+                                <a class="addthis_button_preferred_4"></a>
+                                <a class="addthis_button_compact"></a>
+                                <a class="addthis_counter addthis_bubble_style"></a>
+                            </div>
+                            <script type="text/javascript">var addthis_config = {"data_track_addressbar": true};</script>
+                            <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-51ff972c4da6aed7"></script>
+                            <!-- AddThis Button END -->
                         </div>
                     </div>
                 </div>
             </div>
-            
+
             <!-- Beyond this part the marketing copy begins. -->
             <!-- https://developer.mozilla.org/en-US/docs/Web/CSS/text-align -->
             <!-- http://twitter.github.io/bootstrap/base-css.html#images -->
@@ -238,7 +260,7 @@
                         prove their expertise.
                     </p>
                 </div>
-                
+
                 <div class="span5 copy copy-right">
                     <p>
                         Do you love programming? You're maybe coding all day long at
@@ -254,16 +276,16 @@
                         and eventually more.
                     </p>
                 </div>
-                
-                
+
+
             </div>
-            
+
             <div class="row-fluid">
                 <div class="span12">
                     <p class="lead subheading">SourcecodeBroker brings together software engineers with work and programmers with time.</p>
                 </div>
             </div>
-            
+
             <!-- For the FAQ, we introduce a little bit of JS, using the accordion. -->
             <!-- this brings in jquery.js and bootstrap.js as dependencies. -->
             <!-- http://twitter.github.io/bootstrap/javascript.html#collapse -->
@@ -288,7 +310,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="accordion-group">
                             <div class="accordion-heading">
                                 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
@@ -308,7 +330,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- Not crucial, but we put this under a CC By-SA 3.0 license. -->
             <!-- http://creativecommons.org/licenses/ -->
             <div class="row-fluid footer">
@@ -321,7 +343,7 @@
                     <p>Diagram and Sourcecode by Dirk Podolak</p>
                 </div>
             </div>
-            
+
         </div>
     </body>
 </html>
